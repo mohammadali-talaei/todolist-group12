@@ -11,7 +11,7 @@ import SwiftUI
 struct todolist_group12App: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            WelcomeView()
         }
     }
 }
