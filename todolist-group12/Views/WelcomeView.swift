@@ -33,7 +33,7 @@ struct WelcomeView: View {
                 showSignIn = true
             })
                 .fullScreenCover(isPresented: $showSignIn) {
-                    SignInView()
+                    LoginView()
                 }
         }
         .padding()

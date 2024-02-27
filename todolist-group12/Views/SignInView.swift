@@ -4,7 +4,9 @@ struct SignInView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     @State private var isShowingSignUp: Bool = false
-
+    @State private var isAuthenticated: Bool = false
+    @State private var selectedTab: Int = 0  // Default to the first tab
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -34,23 +36,33 @@ struct SignInView: View {
                 .navigationDestination(isPresented: $isShowingSignUp) {
                     SignUpView()
                 }
-
+                
                 Button("Sign In") {
-                    // Handle sign-in logic here
+                    signIn() // Call the sign-in method
                 }
                 .padding()
                 .frame(maxWidth: .infinity)
                 .background(Color.purple)
                 .foregroundColor(.white)
                 .cornerRadius(10)
+                
+
+                .fullScreenCover(isPresented: $isAuthenticated) {
+//                    DashboardView(selectedTab: $selectedTab)
+                }
             }
             .padding()
         }
     }
-}
-
-struct SignInView_Previews: PreviewProvider {
-    static var previews: some View {
-        SignInView()
+    
+    func signIn() {
+        // Validate the email and password
+        // This is a placeholder for your actual authentication logic
+        if !email.isEmpty && !password.isEmpty {
+            // Simulate successful authentication
+            isAuthenticated = true
+        } else {
+            // Handle validation failure, show an error message, etc.
+        }
     }
 }
