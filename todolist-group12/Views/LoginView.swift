@@ -8,6 +8,10 @@ struct LoginView: View {
     var body: some View {
         NavigationStack {
             VStack {
+                Text("Mahyar Ghasemi Khah: 101399392")
+                Text("Mohammadali Talaei: 101400831")
+            }
+            VStack {
                 Image("welcome-image") // Replace with your actual image name
                     .resizable()
                     .aspectRatio(contentMode: .fit)
