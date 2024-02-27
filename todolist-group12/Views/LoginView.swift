@@ -30,10 +30,14 @@ struct LoginView: View {
                     TextField("Email", text: $viewModel.email)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding(EdgeInsets(top: 5, leading: 6, bottom: 5, trailing: 6))
+                        .listRowSeparator(.hidden)
+
                     
                     SecureField("Password", text: $viewModel.password)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding(EdgeInsets(top: 5, leading: 6, bottom: 5, trailing: 6))
+                        .listRowSeparator(.hidden)
+
 
                     Button("Don't have an account? Sign Up") {
                         isShowingSignUp = true
@@ -41,6 +45,8 @@ struct LoginView: View {
                     .navigationDestination(isPresented: $isShowingSignUp) {
                         RegisterView()
                     }
+                    .listRowSeparator(.hidden)
+
                     
                     Button("Sign In") {
                         viewModel.login()
