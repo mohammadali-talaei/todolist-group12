@@ -1,8 +1,15 @@
 import SwiftUI
 
 struct ToDoListItemView: View {
-    @StateObject var viewModel = ToDoListItemViewViewModel()
+    @StateObject var viewModel: ToDoListItemViewViewModel
     let item: ToDoListItem
+    let userId: String // Add userId as a property
+
+    init(item: ToDoListItem, userId: String) {
+        self.item = item
+        self.userId = userId
+        self._viewModel = StateObject(wrappedValue: ToDoListItemViewViewModel(userId: userId))
+    }
 
     var body: some View {
         HStack {
@@ -23,7 +30,6 @@ struct ToDoListItemView: View {
                 Image(systemName: item.isDone ? "checkmark.circle.fill" : "circle")
                     .foregroundColor(Color.blue)
             }
-
         }
     }
 }

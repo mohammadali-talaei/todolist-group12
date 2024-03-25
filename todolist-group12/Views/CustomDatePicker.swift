@@ -1,168 +1,142 @@
-import FirebaseFirestoreSwift
 import SwiftUI
+import FirebaseFirestore
+
 
 struct CustomDatePicker: View {
-    @StateObject var viewModel: ToDoListViewViewModel
-    @FirestoreQuery var items: [ToDoListItem]
-
-    init(userId: String) {
-        self._items = FirestoreQuery(
-            collectionPath: "users/\(userId)/todos"
-        )
-        self._viewModel = StateObject(
-            wrappedValue: ToDoListViewViewModel(userId: userId)
-        )
+    // Binding to allow this date to be shared with parent views.
+    @Binding var currentDate: Date
+    var userId: String
+    // Simple month adjustment to navigate through months.
+    @State private var monthOffset = 0
+    
+    private var calendar: Calendar {
+            Calendar.current
     }
     
-    @Binding var currentDate: Date
+    // Property to store fetched to-dos
+    @State private var todosForSelectedDate: [ToDoListItem] = []
     
-    @State var currentMonth: Int = 0
     var body: some View {
-        VStack (spacing: 20) {
-            let days: [String] = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-            HStack(spacing: 20) {
-                /*@START_MENU_TOKEN@*/Text("Placeholder")/*@END_MENU_TOKEN@*/
-    
-                VStack(alignment: .leading, spacing: 10) {
-                    Text(extraDate()[0])
-                        .font(.caption)
-                        .fontWeight(.semibold)
-                    
-                    Text(extraDate()[1])
-                        .font(.title.bold())
-                }
-                
-                Spacer(minLength: 0)
-                
-                Button {
-                    withAnimation {
-                        currentMonth -= 1
-                        currentDate = getCurrentMonth()
-                    }
-                } label: {
-                    Image(systemName: "chevron.left")
-                        .font(.title2)
-                }
-                
-                Button {
-                    withAnimation {
-                        currentMonth -= 1
-                    }
-                } label: {
-                    Image(systemName: "chevron.right")
-                        .font(.title2)
-                }
-            }
-            .padding()
-            
-            HStack(spacing: 0) {
-                ForEach(days, id: \.self) {day in
+        VStack(spacing: 20) {
+            // Weekday headers
+            let daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+            HStack {
+                ForEach(daysOfWeek, id: \.self) { day in
                     Text(day)
-                        .font(.callout)
-                        .fontWeight(.semibold)
                         .frame(maxWidth: .infinity)
                 }
             }
             
+            // Dates grid
             let columns = Array(repeating: GridItem(.flexible()), count: 7)
             LazyVGrid(columns: columns, spacing: 15) {
-                ForEach(extractDate()) {value in
-                    CardView(value: value)
-                        .background() {
-                            Capsule()
-                                .fill(Color("Red"))
-                                .padding(.horizontal, 8)
-                                .opacity(isSameDay(date1: value.date, date2: currentDate) ? 1 : 0)
-                        }
+                ForEach(daysInCurrentMonth(), id: \.self) { date in
+                    Text("\(calendar.component(.day, from: date))")
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .background(isSameDay(date1: date, date2: currentDate) ? Color.blue : Color.clear)
+                        .cornerRadius(8)
                         .onTapGesture {
-                            currentDate = value.date
+                            currentDate = date
                         }
                 }
             }
-            .onChange(of: currentMonth) { newValue in
-                currentDate = getCurrentMonth()
-            }
-        }
-    }
-    @ViewBuilder
-    func CardView(value: DateValue)->some View{
-        VStack {
-            if value.day != -1 {
-                if let task = items.first(where: { task in
-                    return isSameDay(date1: task.dueDate, date2: value.date)
+            
+            // Month navigation
+            HStack {
+                Button(action: {
+                    monthOffset -= 1
                 }) {
-                    Text("\(value.day)")
-                        .font(.title3.bold())
-                        .foregroundColor(isSameDay(date1: task.dueDate, date2: currentDate) ? .white: .primary)
-                        .frame(maxWidth: .infinity)
-                    
-                    Spacer()
-                    
-                    Circle()
-                        .fill(isSameDay(date1: task.dueDate, date2: currentDate) ? .white : Color("Green"))
-                        .frame(width: 8, height: 8)
+                    Image(systemName: "chevron.left")
                 }
-                else {
-                    Text("\(value.day)")
-                        .font(.title3.bold())
-                        .foregroundColor(isSameDay(date1: value.date, date2: currentDate) ? .white: .primary)
-                        .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/)
-                        
-                    Spacer()
+                
+                Button(action: {
+                    monthOffset += 1
+                }) {
+                    Image(systemName: "chevron.right")
                 }
             }
         }
-        .padding(.vertical, 8)
-        .frame(height: 60, alignment: .top)
+        .padding()
+        .onChange(of: monthOffset) { _ in
+            // Update the current date when changing months
+            if let newDate = Calendar.current.date(byAdding: .month, value: monthOffset, to: Date()) {
+                currentDate = newDate
+            }
+        }
+        Text("\(selectedDateString)")
+                        .font(.title2)
+                        .fontWeight(.bold)
+        
+        List(todosForSelectedDate) { todo in
+                    Text(todo.title)
+                }
+                .onChange(of: currentDate) { _ in
+                    fetchTodosForSelectedDate()
+                }
+                .onAppear(perform: fetchTodosForSelectedDate)
+                .frame(height: 300)
     }
     
-    func isSameDay(date1: Date, date2: Date)->Bool {
-        let calendar = Calendar.current
-        
-        return calendar.isDate(date1, isSameDayAs: date2)
-    }
-    func extraDate()->[String] {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "YYYY MMMM"
-        
-        let date = formatter.string(from: currentDate)
-        
-        return date.components(separatedBy: " ")
-    }
-    func getCurrentMonth()->Date {
-        let calendar = Calendar.current
-        guard let currrentMonth = calendar.date(byAdding:
-                .month, value: self.currentMonth, to: Date()) else {
-            return Date()
-        }
-        return currentMonth
-    }
-    func extractDate()->[DateValue]{
-        let calendar = Calendar.current
-        let currrentMonth = getCurrentMonth()
-        
-        let days = currentMonth.getAllDates().compactMap { date ->
-            DateValue in
-            
-            let day = calendar.component(.day, from: date)
-            
-            return DateValue(day: day, date: date)
-        }
-    }
-}
+    private func fetchTodosForSelectedDate() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy/MM/dd"
+        let dateString = dateFormatter.string(from: currentDate)
 
-extension Date {
-    func getAllDates()->Date {
-        let calendar = Calendar.current
-        
-        let startDate = calendar.date(from: Calendar.current.dateComponents([.year, .month], from: self))!
-        
-        range.removeLast()
-        
-        let range = calendar.range(of: .day, in: .month, for: startDate)!
-        
-        return range.compactMap { day -> Date in
-            return calendar.date(byAdding: .day, value: day == 1 ? 0 : day, to: startDate)!
+        // Assuming startOfDay and endOfDay are midnight and just before midnight of the next day
+        guard let startOfDay = dateFormatter.date(from: dateString),
+              let endOfDay = calendar.date(byAdding: .day, value: 1, to: startOfDay) else {
+            fatalError("Couldn't calculate start and end of day.")
         }
+
+        print("Fetching todos from \(startOfDay) to \(endOfDay) for user \(userId)")
+
+        let todosRef = Firestore.firestore().collection("users").document(userId).collection("todos")
+        todosRef.whereField("dueDate", isGreaterThanOrEqualTo: startOfDay)
+                 .whereField("dueDate", isLessThan: endOfDay)
+                 .getDocuments { (querySnapshot, err) in
+                     if let err = err {
+                         print("Error getting documents: \(err)")
+                     } else if let documents = querySnapshot?.documents {
+                         print("Fetched \(documents.count) todos.")
+                         self.todosForSelectedDate = documents.compactMap { document -> ToDoListItem? in
+                             try? document.data(as: ToDoListItem.self)
+                         }
+                     }
+                 }
+    }
+
+
+    
+    // Helper to get the current month and year string
+    private var currentMonthYearString: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM yyyy"
+        return formatter.string(from: Calendar.current.date(byAdding: .month, value: monthOffset, to: Date())!)
+    }
+    
+    // Helper to get a string representation of the selected date
+    private var selectedDateString: String {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "MMM d, yyyy"
+            return formatter.string(from: currentDate)
+        }
+    
+    // Helper to list all days in the current month
+    private func daysInCurrentMonth() -> [Date] {
+        guard let monthStart = calendar.date(from: calendar.dateComponents([.year, .month], from: currentDate)),
+              let monthEnd = calendar.date(byAdding: .month, value: 1, to: monthStart),
+              let range = calendar.range(of: .day, in: .month, for: monthStart) else {
+            return []
+        }
+        
+        return range.compactMap { day -> Date? in
+            calendar.date(byAdding: .day, value: day - 1, to: monthStart)
+        }.filter { $0 < monthEnd }
+    }
+
+    
+    // Helper to check if two dates are the same day
+    private func isSameDay(date1: Date, date2: Date) -> Bool {
+        return Calendar.current.isDate(date1, inSameDayAs: date2)
     }
 }

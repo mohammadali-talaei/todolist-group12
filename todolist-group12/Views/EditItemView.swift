@@ -2,14 +2,10 @@ import SwiftUI
 
 struct EditItemView: View {
     @Binding var item: ToDoListItem? // You would need to define the properties of ToDoListItem to match your data model
-    @State private var taskName: String = ""
-    @State private var taskDescription: String = ""
-    @State private var taskCategory: String = "Personal"
-    @State private var taskDueDate: Date = Date()
-    @State private var taskTags: [String] = ["Business"]
-    // Define more properties as needed for subtasks, etc.
+    @ObservedObject var viewModel: ToDoListViewViewModel 
+    @State private var title: String = ""
+    @State private var dueDate: Date = Date()
 
-    let categories = ["Personal", "Work", "Other"]
     let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .short
@@ -20,45 +16,13 @@ struct EditItemView: View {
         NavigationView {
             Form {
                 Section(header: Text("Task:")) {
-                    TextField("Write a blog post", text: $taskName)
-                    TextField("Provide a brief", text: $taskDescription)
-                }
-
-                Section(header: Text("Choose a")) {
-                    Picker("Category", selection: $taskCategory) {
-                        ForEach(categories, id: \.self) {
-                            Text($0)
-                        }
-                    }
+                    TextField("Write a blog post", text: $title)
                 }
 
                 Section(header: Text("Set the")) {
-                    DatePicker("Due Date", selection: $taskDueDate, displayedComponents: .date)
+                    DatePicker("Due Date", selection: $dueDate, displayedComponents: .date)
                 }
 
-                Section(header: Text("Tags")) {
-                    // Replace with a custom view that allows adding and removing tags
-                    ForEach(taskTags, id: \.self) { tag in
-                        Text(tag)
-                    }
-                    Button(action: {
-                        // Implement tag adding logic
-                    }) {
-                        Text("+ Add Tag")
-                    }
-                }
-
-                Section(header: Text("Subtask:")) {
-                    // Replace with a custom view that allows managing subtasks
-                    Button(action: {
-                        // Implement subtask adding logic
-                    }) {
-                        HStack {
-                            Image(systemName: "plus")
-                            Text("Add a new subtask to the Task")
-                        }
-                    }
-                }
 
                 HStack {
                     Button("Delete task") {
@@ -67,11 +31,29 @@ struct EditItemView: View {
                     .foregroundColor(.red)
 
                     Spacer()
+                    
+                    Button(action: {
+                        // First, check that the `item` exists and has an `id`.
+                        if var currentItem = item, let itemId = currentItem.id {
+                            currentItem.title = title
+                            currentItem.dueDate = dueDate
 
-                    Button("Save changes") {
-                        // Implement save changes logic
+                            // Convert the item to a dictionary using your `asDictionary` method.
+                            let itemData = currentItem.asDictionary()
+
+                            // Call a method in your view model to update the item in Firestore.
+                            viewModel.update(id: itemId, newData: itemData)
+
+                            // Dismiss the edit view by setting the `item` to nil.
+                            item = nil
+                        } else {
+                            // Handle the error: the item is nil or doesn't have an id.
+                            print("Item is nil or doesn't have a valid ID.")
+                        }
+                    }) {
+                        Text("Save changes")
                     }
-                    .foregroundColor(.blue)
+
                 }
             }
             .navigationBarItems(trailing: Button(action: {
@@ -82,16 +64,11 @@ struct EditItemView: View {
             })
             .navigationTitle("Edit Task")
         }
-//        .onAppear {
-//            if let item = item {
-//                // Initialize the state variables with the item's properties
-//                taskName = item.name
-//                taskDescription = item.description
-//                taskCategory = item.category
-//                taskDueDate = item.dueDate
-//                taskTags = item.tags
-//                // Initialize other properties as needed
-//            }
-//        }
+        .onAppear {
+            if let currentItem = item {
+                title = currentItem.title
+                dueDate = currentItem.dueDate
+            }
+        }
     }
 }
