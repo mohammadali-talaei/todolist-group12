@@ -1,3 +1,13 @@
+/*
+    Mahyar Ghasemi Khah: 101399392
+        Tasks:
+            - Implemented the RegisterViewViewModel class to handle user registration
+            - Created published properties for name, email, and password to store user input
+            - Implemented the register() method to create a new user account with Firebase Authentication and insert user data into Firestore
+            - Implemented the insertUserRecord() method to add user data to the Firestore database
+            - Implemented the validate() method to perform basic validation checks on user input before registration
+*/
+
 import FirebaseFirestore
 import FirebaseAuth
 import Foundation

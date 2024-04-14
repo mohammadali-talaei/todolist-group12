@@ -1,3 +1,11 @@
+/*
+    Mahyar Ghasemi Khah: 101399392
+        Tasks:
+            - Implemented the LoginViewViewModel class to handle user login functionality
+            - Validated email and password fields to ensure they are not empty and have valid formats
+            - Integrated Firebase Auth for user authentication using email and password
+*/
+
 import FirebaseAuth
 import Foundation
 

@@ -1,3 +1,15 @@
+/*
+    Mahyar Ghasemi Khah: 101399392
+        Tasks:
+            - Implemented the LoginView SwiftUI component
+            - Designed the layout and appearance of the login screen with input fields, buttons, and navigation
+            - Integrated the LoginViewViewModel to handle login functionality and error messages
+    Mohammadali Talaei: 101400831
+        Tasks:
+            - Assisted in refining the UI design and layout for improved user experience
+            - Provided feedback on navigation flow and usability of the login screen
+*/
+
 import SwiftUI
 
 struct LoginView: View {

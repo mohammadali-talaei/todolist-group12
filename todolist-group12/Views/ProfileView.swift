@@ -1,3 +1,13 @@
+/*
+    Mahyar Ghasemi Khah: 101399392
+        Tasks:
+            - Integrated the ProfileViewViewModel to fetch user data and handle logout functionality
+    Mohammadali Talaei: 101400831
+        Tasks:
+            - Implemented the ProfileView SwiftUI component
+            - Designed the layout and appearance of the profile screen including user information and logout button
+*/
+
 import SwiftUI
 
 struct ProfileView: View {

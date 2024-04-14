@@ -1,3 +1,13 @@
+/*
+    Mahyar Ghasemi Khah: 101399392
+        Tasks:
+            - Implemented the NewItemView SwiftUI component
+            - Integrated the NewItemViewViewModel to handle saving functionality and input validation
+    Mohammadali Talaei: 101400831
+        Tasks:
+            - Designed the layout and appearance of the new item screen with input fields and a save button
+*/
+
 import SwiftUI
 
 struct NewItemView: View {

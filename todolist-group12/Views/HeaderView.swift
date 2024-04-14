@@ -1,3 +1,11 @@
+/*
+    Mahyar Ghasemi Khah: 101399392
+        Tasks:
+            - Implemented the HeaderView SwiftUI component
+            - Designed the layout and appearance of the header with a title, subtitle, and background color
+            - Applied rotation effect to the background shape with a specified angle
+*/
+
 import SwiftUI
 
 struct HeaderView: View {

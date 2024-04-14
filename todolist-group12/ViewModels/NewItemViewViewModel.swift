@@ -1,3 +1,11 @@
+/*
+    Mahyar Ghasemi Khah: 101399392
+        Tasks:
+            - Implemented the NewItemViewViewModel class to handle the creation and saving of new to-do items
+            - Created published properties for title, dueDate, and showAlert to track user input and display alerts
+            - Implemented the save() method to validate input and save the new to-do item to Firestore
+            - Implemented the canSave property to determine whether the input is valid and can be saved
+*/
 import FirebaseAuth
 import FirebaseFirestore
 import Foundation

@@ -1,3 +1,10 @@
+/*
+    Mohammadali Talaei: 101400831
+        Tasks:
+            - Implemented the MainView SwiftUI component
+            - Integrated the MainViewViewModel to manage user authentication and display appropriate views based on authentication status
+            - Designed the layout and appearance of the MainView with a tab view including Home, Calendar, and Profile sections
+*/
 import SwiftUI
 
 struct MainView: View {

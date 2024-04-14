@@ -1,3 +1,13 @@
+/*
+    Mahyar Ghasemi Khah: 101399392
+        Tasks:
+            - Designed and implemented the UI layout, including the calendar grid and navigation controls
+            - Implemented state management for integrating the date picker component with parent views
+    Mohammadali Talaei: 101400831
+        Tasks:
+            - Implemented fetching and displaying todos for the selected date from Firestore
+            - Assisted in refining the UI design and layout for improved user experience
+*/
 import SwiftUI
 import FirebaseFirestore
 

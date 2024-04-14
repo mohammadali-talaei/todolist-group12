@@ -1,3 +1,11 @@
+/*
+    Mahyar Ghasemi Khah: 101399392
+        Tasks:
+            - Implemented the ToDoListViewViewModel class to manage interactions and data operations for the list of to-do items
+            - Implemented the delete() method to delete a to-do item from the Firestore database based on its ID
+            - Implemented the update() method to update a to-do item in the Firestore database with new data
+*/
+
 import FirebaseFirestore
 import Foundation
 
@@ -23,5 +31,14 @@ class ToDoListViewViewModel: ObservableObject {
             .collection("todos")
             .document(id)
             .delete()
+    }
+    func update(id: String, newData: [String: Any]) {
+            let db = Firestore.firestore()
+
+            db.collection("users")
+                .document(userId)
+                .collection("todos")
+                .document(id)
+                .setData(newData, merge: true)
     }
 }

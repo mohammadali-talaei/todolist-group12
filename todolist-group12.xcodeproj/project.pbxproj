@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -60,13 +60,14 @@
 		FC836F572B8C3E29007546BD /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = FC836F562B8C3E29007546BD /* FirebaseStorage */; };
 		FC836F592B8C3E29007546BD /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = FC836F582B8C3E29007546BD /* FirebaseStorageCombine-Community */; };
 		FC836F602B8C44EF007546BD /* ElegantCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = FC836F5F2B8C44EF007546BD /* ElegantCalendar */; };
+		FC9077482BB20982002D4620 /* ElegantCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = FC9077472BB20982002D4620 /* ElegantCalendar */; };
+		FC90774A2BB20B48002D4620 /* CustomDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC9077492BB20B48002D4620 /* CustomDatePicker.swift */; };
 		FCDA09882B8AD61900CDD236 /* todolist_group12App.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDA09872B8AD61900CDD236 /* todolist_group12App.swift */; };
 		FCDA098A2B8AD61900CDD236 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCDA09892B8AD61900CDD236 /* WelcomeView.swift */; };
 		FCDA098C2B8AD61A00CDD236 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCDA098B2B8AD61A00CDD236 /* Assets.xcassets */; };
 		FCDA098F2B8AD61A00CDD236 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FCDA098E2B8AD61A00CDD236 /* Preview Assets.xcassets */; };
 		FCF5BC042B8C4BBB00BEFC3D /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF5BC032B8C4BBB00BEFC3D /* CalendarView.swift */; };
 		FCF5BC082B8C4EEC00BEFC3D /* DateValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF5BC072B8C4EEC00BEFC3D /* DateValue.swift */; };
-		FCF5BC0A2B8D2E2F00BEFC3D /* CustomDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF5BC092B8D2E2F00BEFC3D /* CustomDatePicker.swift */; };
 		FCF5BC0C2B8D42DA00BEFC3D /* EditItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCF5BC0B2B8D42DA00BEFC3D /* EditItemView.swift */; };
 /* End PBXBuildFile section */
 
@@ -91,6 +92,7 @@
 		FC836F1E2B8C3BFC007546BD /* Lunch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Lunch Screen.storyboard"; sourceTree = "<group>"; };
 		FC836F202B8C3C6F007546BD /* ToDoListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListItem.swift; sourceTree = "<group>"; };
 		FC836F222B8C3C88007546BD /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		FC9077492BB20B48002D4620 /* CustomDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDatePicker.swift; sourceTree = "<group>"; };
 		FCDA09842B8AD61900CDD236 /* todolist-group12.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "todolist-group12.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCDA09872B8AD61900CDD236 /* todolist_group12App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = todolist_group12App.swift; sourceTree = "<group>"; };
 		FCDA09892B8AD61900CDD236 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
@@ -98,7 +100,6 @@
 		FCDA098E2B8AD61A00CDD236 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FCF5BC032B8C4BBB00BEFC3D /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		FCF5BC072B8C4EEC00BEFC3D /* DateValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValue.swift; sourceTree = "<group>"; };
-		FCF5BC092B8D2E2F00BEFC3D /* CustomDatePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomDatePicker.swift; path = ../../../../../../../Downloads/ElegantTaskApp/Shared/View/CustomDatePicker.swift; sourceTree = "<group>"; };
 		FCF5BC0B2B8D42DA00BEFC3D /* EditItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditItemView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -138,6 +139,7 @@
 				FC836F2B2B8C3E29007546BD /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 				FC836F2D2B8C3E29007546BD /* FirebaseAppCheck in Frameworks */,
 				FC836F552B8C3E29007546BD /* FirebaseRemoteConfigSwift in Frameworks */,
+				FC9077482BB20982002D4620 /* ElegantCalendar in Frameworks */,
 				FC836F2F2B8C3E29007546BD /* FirebaseAppDistribution-Beta in Frameworks */,
 				FC836EE72B8C1CC2007546BD /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 			);
@@ -149,7 +151,6 @@
 		FC836EEA2B8C1F86007546BD /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				FCF5BC092B8D2E2F00BEFC3D /* CustomDatePicker.swift */,
 				FCDA09892B8AD61900CDD236 /* WelcomeView.swift */,
 				FC836EFE2B8C3909007546BD /* MainView.swift */,
 				FC836F002B8C393F007546BD /* ToDoListView.swift */,
@@ -162,6 +163,7 @@
 				FC836F0E2B8C3A89007546BD /* HeaderView.swift */,
 				FCF5BC032B8C4BBB00BEFC3D /* CalendarView.swift */,
 				FCF5BC0B2B8D42DA00BEFC3D /* EditItemView.swift */,
+				FC9077492BB20B48002D4620 /* CustomDatePicker.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -287,6 +289,7 @@
 				FC836F562B8C3E29007546BD /* FirebaseStorage */,
 				FC836F582B8C3E29007546BD /* FirebaseStorageCombine-Community */,
 				FC836F5F2B8C44EF007546BD /* ElegantCalendar */,
+				FC9077472BB20982002D4620 /* ElegantCalendar */,
 			);
 			productName = "todolist-group12";
 			productReference = FCDA09842B8AD61900CDD236 /* todolist-group12.app */;
@@ -317,8 +320,8 @@
 			);
 			mainGroup = FCDA097B2B8AD61800CDD236;
 			packageReferences = (
-				FC836EDF2B8C1CC2007546BD /* XCLocalSwiftPackageReference "../../../../../firebase-ios-sdk" */,
-				FC836F5E2B8C44EF007546BD /* XCLocalSwiftPackageReference "../../../../../ElegantCalendar" */,
+				FC9077452BB20915002D4620 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				FC9077462BB20982002D4620 /* XCRemoteSwiftPackageReference "ElegantCalendar" */,
 			);
 			productRefGroup = FCDA09852B8AD61900CDD236 /* Products */;
 			projectDirPath = "";
@@ -348,7 +351,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FCF5BC0A2B8D2E2F00BEFC3D /* CustomDatePicker.swift in Sources */,
 				FC836F212B8C3C6F007546BD /* ToDoListItem.swift in Sources */,
 				FC836EFF2B8C3909007546BD /* MainView.swift in Sources */,
 				FCF5BC042B8C4BBB00BEFC3D /* CalendarView.swift in Sources */,
@@ -357,6 +359,7 @@
 				FC836F052B8C39DB007546BD /* TLButton.swift in Sources */,
 				FCF5BC0C2B8D42DA00BEFC3D /* EditItemView.swift in Sources */,
 				FC836F1D2B8C3B9E007546BD /* LoginViewViewModel.swift in Sources */,
+				FC90774A2BB20B48002D4620 /* CustomDatePicker.swift in Sources */,
 				FC836F0B2B8C3A50007546BD /* NewItemView.swift in Sources */,
 				FC836F192B8C3B74007546BD /* NewItemViewViewModel.swift in Sources */,
 				FC836F012B8C393F007546BD /* ToDoListView.swift in Sources */,
@@ -412,6 +415,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -475,6 +479,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -578,16 +583,24 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCLocalSwiftPackageReference section */
-		FC836EDF2B8C1CC2007546BD /* XCLocalSwiftPackageReference "../../../../../firebase-ios-sdk" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = "../../../../../firebase-ios-sdk";
+/* Begin XCRemoteSwiftPackageReference section */
+		FC9077452BB20915002D4620 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.23.0;
+			};
 		};
-		FC836F5E2B8C44EF007546BD /* XCLocalSwiftPackageReference "../../../../../ElegantCalendar" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ../../../../../ElegantCalendar;
+		FC9077462BB20982002D4620 /* XCRemoteSwiftPackageReference "ElegantCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ThasianX/ElegantCalendar.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.3.2;
+			};
 		};
-/* End XCLocalSwiftPackageReference section */
+/* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
 		FC836EE02B8C1CC2007546BD /* FirebaseAnalytics */ = {
@@ -720,6 +733,11 @@
 		};
 		FC836F5F2B8C44EF007546BD /* ElegantCalendar */ = {
 			isa = XCSwiftPackageProductDependency;
+			productName = ElegantCalendar;
+		};
+		FC9077472BB20982002D4620 /* ElegantCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FC9077462BB20982002D4620 /* XCRemoteSwiftPackageReference "ElegantCalendar" */;
 			productName = ElegantCalendar;
 		};
 /* End XCSwiftPackageProductDependency section */

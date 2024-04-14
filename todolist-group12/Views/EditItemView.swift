@@ -1,3 +1,11 @@
+/* 
+ Mahyar Ghasemi Khah: 101399392
+    Tasks:
+        -   Implemented the logic for making the request to firebase
+ Mohammadali Talaei: 101400831
+    Task:
+        - Drafted the UI and set the states for integration
+ */
 import SwiftUI
 
 struct EditItemView: View {
@@ -25,13 +33,6 @@ struct EditItemView: View {
 
 
                 HStack {
-                    Button("Delete task") {
-                        // Implement delete task logic
-                    }
-                    .foregroundColor(.red)
-
-                    Spacer()
-                    
                     Button(action: {
                         // First, check that the `item` exists and has an `id`.
                         if var currentItem = item, let itemId = currentItem.id {

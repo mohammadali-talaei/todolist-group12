@@ -1,3 +1,10 @@
+/*
+    Mohammadali Talaei: 101400831
+        Tasks:
+            - Implemented the ToDoListItemView SwiftUI component
+            - Designed the layout and appearance of the ToDoListItemView with title, due date, and completion toggle button
+*/
+
 import SwiftUI
 
 struct ToDoListItemView: View {

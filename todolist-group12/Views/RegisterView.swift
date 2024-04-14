@@ -1,3 +1,13 @@
+/*
+    Mahyar Ghasemi Khah: 101399392
+        Tasks:
+            - Designed the layout and appearance of the register screen including input fields and buttons
+    Mohammadali Talaei: 101400831
+        Tasks:
+            - Implemented the RegisterView SwiftUI component
+            - Integrated the RegisterViewViewModel to handle user registration functionality
+*/
+
 import SwiftUI
 
 struct RegisterView: View {

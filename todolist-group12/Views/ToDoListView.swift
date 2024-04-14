@@ -1,3 +1,11 @@
+/*
+    Mahyar Ghasemi Khah: 101399392
+        Tasks:
+            - Implemented the ToDoListView SwiftUI component
+            - Integrated the ToDoListViewViewModel to fetch and manage to-do list items
+            - Designed the layout and appearance of the ToDoListView with a list of to-do items, delete and edit swipe actions, and a button to add new items
+*/
+
 import FirebaseFirestoreSwift
 import SwiftUI
 

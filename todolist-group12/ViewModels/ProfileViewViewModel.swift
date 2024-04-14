@@ -1,3 +1,12 @@
+/*
+    Mohammadali Talaei: 101400831
+        Task:
+            - Implemented the ProfileViewViewModel class to handle fetching user data and logging out
+            - Created a published property user to store user information fetched from Firestore
+            - Implemented the fetchUser() method to retrieve user data from Firestore based on the current user's ID
+            - Implemented the logOut() method to sign out the current user from Firebase Authentication
+*/
+
 import FirebaseAuth
 import FirebaseFirestore
 import Foundation
