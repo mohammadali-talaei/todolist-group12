@@ -12,20 +12,24 @@ import FirebaseFirestore
 import Foundation
 
 class ProfileViewViewModel: ObservableObject {
-    init() {}
-
+    // Published property to hold user profile data
     @Published var user: User? = nil
-
+    
+    // Fetches user profile data from Firestore
     func fetchUser() {
+        // Get the current user's ID
         guard let userId = Auth.auth().currentUser?.uid else {
             return
         }
+        
+        // Access Firestore and fetch user document
         let db = Firestore.firestore()
         db.collection("users").document(userId).getDocument { [weak self] snapshot, error in
             guard let data = snapshot?.data(), error == nil else {
                 return
             }
 
+            // Update user property with fetched data
             DispatchQueue.main.async {
                 self?.user = User(
                     id: data["id"] as? String ?? "",
@@ -36,7 +40,8 @@ class ProfileViewViewModel: ObservableObject {
             }
         }
     }
-
+    
+    // Logs out the current user
     func logOut() {
         do {
             try Auth.auth().signOut()

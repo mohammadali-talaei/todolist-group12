@@ -12,17 +12,24 @@ import Foundation
 /// ViewModel for list of items view
 /// Primary tab
 class ToDoListViewViewModel: ObservableObject {
+    // Published property to control the visibility of the new item view
     @Published var showingNewItemView = false
+    
+    // Published property to control the visibility of the item edit view
     @Published var showingItemEdit = false
-
+    
+    // User ID associated with the to-do list
     private let userId: String
-
+    
+    // Initializes the view model with the user ID
     init(userId: String) {
         self.userId = userId
     }
 
-    /// Delete to do list item
-    /// - Parameter id: Item id to delete
+    // CRUD Operations
+    
+    /// Deletes a to-do list item from Firestore
+    /// - Parameter id: The ID of the item to delete
     func delete(id: String) {
         let db = Firestore.firestore()
 
@@ -32,13 +39,18 @@ class ToDoListViewViewModel: ObservableObject {
             .document(id)
             .delete()
     }
+    
+    /// Updates a to-do list item in Firestore
+    /// - Parameters:
+    ///   - id: The ID of the item to update
+    ///   - newData: The updated data for the item
     func update(id: String, newData: [String: Any]) {
-            let db = Firestore.firestore()
+        let db = Firestore.firestore()
 
-            db.collection("users")
-                .document(userId)
-                .collection("todos")
-                .document(id)
-                .setData(newData, merge: true)
+        db.collection("users")
+            .document(userId)
+            .collection("todos")
+            .document(id)
+            .setData(newData, merge: true)
     }
 }

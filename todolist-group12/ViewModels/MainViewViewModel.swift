@@ -9,9 +9,13 @@ import FirebaseAuth
 import Foundation
 
 class MainViewViewModel: ObservableObject {
+    // The current user's ID
     @Published var currentUserId: String = ""
+    
+    // Handle for observing changes in authentication state
     private var handler: AuthStateDidChangeListenerHandle?
-
+    
+    // Initializes the view model and sets up the authentication state listener
     init() {
         self.handler = Auth.auth().addStateDidChangeListener { [weak self] _, user in
             DispatchQueue.main.async {
@@ -19,7 +23,8 @@ class MainViewViewModel: ObservableObject {
             }
         }
     }
-
+    
+    // Determines if the user is signed in
     public var isSignedIn: Bool {
         return Auth.auth().currentUser != nil
     }

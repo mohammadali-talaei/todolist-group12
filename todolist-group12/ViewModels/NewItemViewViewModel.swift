@@ -11,23 +11,33 @@ import FirebaseFirestore
 import Foundation
 
 class NewItemViewViewModel: ObservableObject {
+    // Title of the new item
     @Published var title = ""
+    
+    // Due date of the new item
     @Published var dueDate: Date = Date()
+    
+    // Flag to control whether to show an alert
     @Published var showAlert = false
-
+    
+    // Initializes the view model
     init() {}
 
+    // MARK: - Save Method
+    
+    // Saves the new to-do list item
     func save() {
+        // Check if the item can be saved
         guard canSave else {
             return
         }
 
-        // Get current user id
+        // Get the current user's ID
         guard let uId = Auth.auth().currentUser?.uid else {
             return
         }
 
-        // Create model
+        // Create a new to-do list item model
         let newId = UUID().uuidString
         let newItem = ToDoListItem(
             id: newId,
@@ -37,7 +47,7 @@ class NewItemViewViewModel: ObservableObject {
             isDone: false
         )
 
-        // Save model
+        // Save the new item to Firestore
         let db = Firestore.firestore()
         db.collection("users")
             .document(uId)
@@ -45,9 +55,10 @@ class NewItemViewViewModel: ObservableObject {
             .document(newId)
             .setData(newItem.asDictionary())
     }
-
+    
+    // Checks if the new item can be saved
     var canSave: Bool {
-        guard !title.trimmingCharacters(in: .whitespaces).isEmpty  else {
+        guard !title.trimmingCharacters(in: .whitespaces).isEmpty else {
             return false
         }
 

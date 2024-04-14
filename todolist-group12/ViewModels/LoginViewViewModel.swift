@@ -10,12 +10,19 @@ import FirebaseAuth
 import Foundation
 
 class LoginViewViewModel: ObservableObject {
+    // Email entered by the user
     @Published var email = ""
+    
+    // Password entered by the user
     @Published var password = ""
+    
+    // Error message to display if login fails
     @Published var errorMessage = ""
-
+    
+    // Initializes the view model
     init() {}
-
+    
+    // Validates user input and attempts to log in with provided credentials
     func login() {
         guard validate() else {
             return
@@ -23,10 +30,11 @@ class LoginViewViewModel: ObservableObject {
 
         // Try log in
         Auth.auth().signIn(withEmail: email, password: password)
-    }
-
+    }    
+    // Validates the email and password fields
     private func validate() -> Bool {
         errorMessage = ""
+        
         guard !email.trimmingCharacters(in: .whitespaces).isEmpty,
               !password.trimmingCharacters(in: .whitespaces).isEmpty else {
             errorMessage = "Please fill in all fields."
